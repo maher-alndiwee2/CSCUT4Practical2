@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.Scanner;
 
-public class FilesInOut {
+public class FormatNamesm {
 
     public static void main(String[] args) {
         boolean allUpperCase = false; // flag for uppercase formatting
@@ -33,15 +33,21 @@ public class FilesInOut {
 
                 // format first and last names
                 StringBuilder firstName = new StringBuilder(words[0]);
-                StringBuilder lastName = new StringBuilder(words[1]);
+                StringBuilder lastName = new StringBuilder(words[words.length - 2]);
                 firstName.setCharAt(0, Character.toUpperCase(firstName.charAt(0)));
                 lastName.setCharAt(0, Character.toUpperCase(lastName.charAt(0)));
                 firstName.replace(1, firstName.length(), firstName.substring(1).toLowerCase());
                 lastName.replace(1, lastName.length(), lastName.substring(1).toLowerCase());
-                String fullName = firstName.toString() + " " + lastName.toString();
+                String fullName = firstName.toString();
+                if (words.length == 4) {
+                    String middleInitial = words[1];
+                    fullName += " " + middleInitial.toUpperCase() + ". " + lastName.toString();
+                } else {
+                    fullName += " " + lastName.toString();
+                }
 
                 // format date
-                String date = words[2];
+                String date = words[words.length - 1];
                 String formattedDate = date.substring(0, 2) + "/" + date.substring(2, 4) + "/" + date.substring(4);
 
                 // write output to file
