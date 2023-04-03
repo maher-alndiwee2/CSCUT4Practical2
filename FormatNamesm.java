@@ -31,19 +31,15 @@ public class FormatNamesm {
                 String line = scanner.nextLine();
                 String[] words = line.split(" ");
 
-                // format first and last names
-                StringBuilder firstName = new StringBuilder(words[0]);
-                StringBuilder lastName = new StringBuilder(words[words.length - 2]);
-                firstName.setCharAt(0, Character.toUpperCase(firstName.charAt(0)));
-                lastName.setCharAt(0, Character.toUpperCase(lastName.charAt(0)));
-                firstName.replace(1, firstName.length(), firstName.substring(1).toLowerCase());
-                lastName.replace(1, lastName.length(), lastName.substring(1).toLowerCase());
-                String fullName = firstName.toString();
-                if (words.length == 4) {
-                    String middleInitial = words[1];
-                    fullName += " " + middleInitial.toUpperCase() + ". " + lastName.toString();
+             // format first and last names
+                String firstName = words[0].substring(0, 1).toUpperCase() + words[0].substring(1).toLowerCase();
+                String lastName = words[words.length - 2].substring(0, 1).toUpperCase() + words[words.length - 2].substring(1).toLowerCase();
+                String fullName;
+				if (words.length > 4) {
+                    String middleInitial = words[1].substring(0, 1).toUpperCase() + ".";
+                    fullName = firstName + " " + middleInitial + " " + lastName;
                 } else {
-                    fullName += " " + lastName.toString();
+                    fullName = firstName + " " + lastName + "\t";
                 }
 
                 // format date
